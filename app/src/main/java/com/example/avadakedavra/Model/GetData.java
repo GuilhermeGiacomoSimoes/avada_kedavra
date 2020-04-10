@@ -62,7 +62,7 @@ public class GetData {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
-                    gson = new GsonBuilder()
+                    gson =  new GsonBuilder()
                             .excludeFieldsWithoutExposeAnnotation()
                             .create();
 
@@ -87,7 +87,7 @@ public class GetData {
         @Override
         protected List<Character> doInBackground(String... strings) {
 
-            gson = new GsonBuilder()
+            gson =  new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
                     .create();
 

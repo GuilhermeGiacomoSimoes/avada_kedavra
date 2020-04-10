@@ -1,6 +1,7 @@
 package com.example.avadakedavra.Model;
 
 public class Character {
+    private long characterId;
     private String name;
     private String gender;
     private String house;
@@ -54,5 +55,13 @@ public class Character {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public long getCharacterId() {
+        return characterId;
+    }
+
+    public void setCharacterId(long characterId) {
+        this.characterId = characterId;
     }
 }
