@@ -1,16 +1,14 @@
-package com.example.avadakedavra.model;
+package com.example.avadakedavra.model.http;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.ConnectionHelper;
-import com.example.avadakedavra.helper.HouseENUM;
-import com.example.avadakedavra.helper.RequestENUM;
+import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.view.fragments.FragmentError;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,9 +28,10 @@ public class GetData {
 
     public GetData(@NonNull Context context){
         this.context = context;
+        new GetDataAsyncTask().execute(GET_DATA);
     }
 
-    private class GetDataAsyncTask extends AsyncTask<String, Void, List<Character>> {
+    public class GetDataAsyncTask extends AsyncTask<String, Void, List<Character>> {
         private Gson gson;
 
         private AsyncHttpResponseHandler getDataResponseHandler = new AsyncHttpResponseHandler() {

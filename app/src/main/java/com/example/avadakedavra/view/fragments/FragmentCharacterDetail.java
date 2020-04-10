@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.databinding.FragmentCharacterDetailBinding;
-import com.example.avadakedavra.model.Character;
+import com.example.avadakedavra.model.models.Character;
 
 public class FragmentCharacterDetail extends DialogFragment {
 

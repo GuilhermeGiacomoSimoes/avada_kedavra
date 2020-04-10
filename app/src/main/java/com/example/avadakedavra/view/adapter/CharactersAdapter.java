@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.avadakedavra.R;
-import com.example.avadakedavra.model.Character;
+import com.example.avadakedavra.model.models.Character;
 
 import java.util.List;
 

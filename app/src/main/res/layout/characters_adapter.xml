@@ -6,7 +6,7 @@
     <data>
         <variable
             name="character"
-            type="com.example.avadakedavra.model.Character" />
+            type="com.example.avadakedavra.model.models.Character" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package com.example.avadakedavra.model;
+package com.example.avadakedavra.model.models;
 
 public class Character {
     private long characterId;

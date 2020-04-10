@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.HouseENUM;
-import com.example.avadakedavra.model.Character;
+import com.example.avadakedavra.model.models.Character;
+import com.example.avadakedavra.model.http.GetData;
 import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
 
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new GetData(this);
 
         adapter = new CharactersAdapter(this, getCharacters());
 

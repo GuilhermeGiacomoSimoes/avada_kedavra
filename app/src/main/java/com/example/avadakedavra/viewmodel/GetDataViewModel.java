@@ -3,7 +3,7 @@ package com.example.avadakedavra.viewmodel;
 import android.content.Context;
 
 import com.example.avadakedavra.helper.HouseENUM;
-import com.example.avadakedavra.model.Character;
+import com.example.avadakedavra.model.models.Character;
 
 import java.util.List;
 
