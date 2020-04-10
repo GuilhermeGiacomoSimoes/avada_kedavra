@@ -1,19 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.activitys.MainActivity"
-    android:orientation="vertical"
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
+    <data>
+        <variable
+            name="mainActivity"
+            type="com.example.avadakedavra.view.activitys.MainActivity" />
+    </data>
 
-
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lstCharacters"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filters"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{mainActivity.houseFilter}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{mainActivity.stringOnlyStudents}"
+                />
 
 
-</LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstCharacters"
+            />
+
+
+    </LinearLayout>
+
+</layout>

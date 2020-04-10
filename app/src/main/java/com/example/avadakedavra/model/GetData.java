@@ -1,6 +1,5 @@
 package com.example.avadakedavra.model;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
