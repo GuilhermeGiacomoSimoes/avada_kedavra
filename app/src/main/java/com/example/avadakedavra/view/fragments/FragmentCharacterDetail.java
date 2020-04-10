@@ -1,4 +1,4 @@
-package com.example.avadakedavra.view;
+package com.example.avadakedavra.view.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +22,6 @@ public class FragmentCharacterDetail extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         FragmentCharacterDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_detail, container, false);
         binding.setCharacter(character);
 
