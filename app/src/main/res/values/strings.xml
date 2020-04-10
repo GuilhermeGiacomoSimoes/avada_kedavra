@@ -6,4 +6,8 @@
     <string name="patronus">Patrono: </string>
     <string name="ok">OK</string>
     <string name="no_internet_connection">Sem conexão com a internet</string>
+    <string name="house_null">Casa nula</string>
+    <string name="url_null">Url nula</string>
+    <string name="couldnt_get_data">Não foi possível obter os dados</string>
+    <string name="error">Erro: </string>
 </resources>

@@ -7,4 +7,8 @@
     <string name="patronus">Patronus: </string>
     <string name="ok">OK</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="house_null">House is null</string>
+    <string name="url_null">Url is null</string>
+    <string name="couldnt_get_data">Couldnt get data</string>
+    <string name="error">Error: </string>
 </resources>

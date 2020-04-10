@@ -1,14 +1,18 @@
 package com.example.avadakedavra.model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.ConnectionHelper;
 import com.example.avadakedavra.helper.HouseENUM;
 import com.example.avadakedavra.helper.RequestENUM;
+import com.example.avadakedavra.view.fragments.FragmentError;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -40,7 +44,7 @@ public class GetData {
                 url = ConnectionHelper.CHARACTERSBYHOUSE + house.name();
             }
             else {
-                //TODO implementar modal de erro
+                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.house_null));
                 Log.e("ERRO", "house nulo");
             }
         }
@@ -49,7 +53,7 @@ public class GetData {
             new GetDataAsyncTask().execute(GET_DATA);
         }
         else {
-            //TODO implementar modal de erro
+            FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.url_null));
             Log.e("ERRO", "url nula");
         }
 
@@ -72,14 +76,14 @@ public class GetData {
 
                     //TODO armazenar os characters no banco
                 }catch (Exception e){
-                    //TODO implementar um modal de erro
+                    FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                //TODO implementar um modal de erro
+                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.couldnt_get_data));
                 error.printStackTrace();
             }
         };
@@ -93,8 +97,7 @@ public class GetData {
 
             try{
                 if(!ConnectionHelper.isConnected(context)){
-                    //TODO implementar um modal de erro
-                    //SEM CONEXÃO COM A INTERNET
+                    FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.no_internet_connection));
                     return null;
                 }
 
@@ -106,7 +109,7 @@ public class GetData {
                 }
 
             }catch (Exception e){
-                //TODO implementar um modal de erro
+                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
                 e.printStackTrace();
             }
 

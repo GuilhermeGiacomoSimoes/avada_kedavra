@@ -39,7 +39,7 @@ public class FragmentError extends DialogFragment {
         super.dismiss();
     }
 
-    public static void build(@NonNull final FragmentManager fragmentManager, final String error) {
+    public static void build(@NonNull final FragmentManager fragmentManager, @NonNull final String error) {
         new FragmentError() {{
            this.setError(error);
            show(fragmentManager, error);
