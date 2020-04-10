@@ -1,7 +1,10 @@
-package com.example.avadakedavra;
+package com.example.avadakedavra.View;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.avadakedavra.R;
 
 public class MainActivity extends AppCompatActivity {
 
