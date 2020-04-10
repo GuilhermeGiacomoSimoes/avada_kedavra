@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">avada kedavra</string>
+    <string name="house">House: </string>
+    <string name="gender">Gender: </string>
+    <string name="dateOfBirth">Date of birth: </string>
+    <string name="patronus">Patronus: </string>
+</resources>

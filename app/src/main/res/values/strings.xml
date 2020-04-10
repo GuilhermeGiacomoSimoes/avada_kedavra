@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">avada kedavra</string>
+    <string name="house">Casa: </string>
+    <string name="gender">Gênero: </string>
+    <string name="dateOfBirth">Data de aniversário: </string>
+    <string name="patronus">Patrono: </string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.avadakedavra.Model;
+package com.example.avadakedavra.model;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -6,9 +6,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.avadakedavra.Helper.ConnectionHelper;
-import com.example.avadakedavra.Helper.HouseENUM;
-import com.example.avadakedavra.Helper.RequestENUM;
+import com.example.avadakedavra.helper.ConnectionHelper;
+import com.example.avadakedavra.helper.HouseENUM;
+import com.example.avadakedavra.helper.RequestENUM;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

@@ -1,4 +1,4 @@
-package com.example.avadakedavra.Helper;
+package com.example.avadakedavra.helper;
 
 public enum RequestENUM {
     HOUSE,

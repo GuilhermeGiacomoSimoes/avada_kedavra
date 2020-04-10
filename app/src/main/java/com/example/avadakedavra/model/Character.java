@@ -1,4 +1,4 @@
-package com.example.avadakedavra.Model;
+package com.example.avadakedavra.model;
 
 public class Character {
     private long characterId;
@@ -8,6 +8,23 @@ public class Character {
     private String dateOfBirth;
     private String patronus;
     private String image;
+
+    public Character(long characterId,
+                     String name,
+                     String gender,
+                     String house,
+                     String dateOfBirth,
+                     String patronus,
+                     String image)
+    {
+        this.characterId = characterId;
+        this.name = name;
+        this.gender = gender;
+        this.house = house;
+        this.dateOfBirth = dateOfBirth;
+        this.patronus = patronus;
+        this.image = image;
+    }
 
     public String getName() {
         return name;

@@ -1,4 +1,4 @@
-package com.example.avadakedavra.View;
+package com.example.avadakedavra.view;
 
 import android.os.Bundle;
 
