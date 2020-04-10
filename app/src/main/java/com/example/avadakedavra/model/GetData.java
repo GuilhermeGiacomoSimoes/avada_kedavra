@@ -26,36 +26,10 @@ import cz.msebera.android.httpclient.Header;
 
 public class GetData {
     private Context context;
-    private String url;
     private static String GET_DATA = "GET";
 
-    public GetData(@NonNull Context context, HouseENUM house, @NonNull RequestENUM requestENUM){
+    public GetData(@NonNull Context context){
         this.context = context;
-
-        if(requestENUM == RequestENUM.STUDENT){
-            url = ConnectionHelper.STUDENTCHARACTERS;
-        }
-        else if(requestENUM == RequestENUM.ALL){
-            url = ConnectionHelper.ALLCHARACTERS;
-        }
-        else {
-            if(house != null){
-                url = ConnectionHelper.CHARACTERSBYHOUSE + house.name();
-            }
-            else {
-                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.house_null));
-                Log.e("ERRO", "house nulo");
-            }
-        }
-
-        if(url != null){
-            new GetDataAsyncTask().execute(GET_DATA);
-        }
-        else {
-            FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.url_null));
-            Log.e("ERRO", "url nula");
-        }
-
     }
 
     private class GetDataAsyncTask extends AsyncTask<String, Void, List<Character>> {
@@ -104,7 +78,7 @@ public class GetData {
                 httpClient.setTimeout(15*60*1000);
 
                 if(strings[0].equals(GET_DATA)){
-                    httpClient.get(context, url, null, "application/json", getDataResponseHandler);
+                    httpClient.get(context, ConnectionHelper.ALLCHARACTERS, null, "application/json", getDataResponseHandler);
                 }
 
             }catch (Exception e){
