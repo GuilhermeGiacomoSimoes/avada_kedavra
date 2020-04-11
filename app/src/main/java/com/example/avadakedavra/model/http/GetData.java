@@ -10,6 +10,7 @@ import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.ConnectionHelper;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.view.fragments.FragmentError;
+import com.example.avadakedavra.viewmodel.SetDataViewModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -46,6 +47,9 @@ public class GetData {
                     String response = new String(responseBody);
                     List<Character> characters = gson.fromJson(response, listType);
 
+                    if(SetDataViewModel.deleteAll(context)){
+                        SetDataViewModel.saveCharacters(characters);
+                    }
 
                 }catch (Exception e){
                     FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());

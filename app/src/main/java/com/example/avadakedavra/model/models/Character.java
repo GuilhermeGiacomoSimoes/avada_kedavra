@@ -1,9 +1,12 @@
 package com.example.avadakedavra.model.models;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 public class Character extends RealmObject {
+
     @PrimaryKey
     private long characterId;
     private String name;
