@@ -2,6 +2,7 @@ package com.example.avadakedavra.view.activitys;
 
 import android.os.Bundle;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         new GetData(this);
 
         adapter = new CharactersAdapter(this, getCharacters());
-
+        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(adapter);
     }
 
     public String getHouseFilter(){

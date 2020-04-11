@@ -27,8 +27,7 @@ public class CharactersAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        characters.get(position);
-        return null;
+        return characters.get(position);
     }
 
     @Override
