@@ -15,7 +15,7 @@ import io.realm.Realm;
 
 public class GetDataViewModel {
     public static List<Character> allCharacters(Context context){
-        Realm realm = RealmConfig.getInstance();
+        Realm realm = RealmConfig.getInstance(context);
 
         try {
 
@@ -31,7 +31,7 @@ public class GetDataViewModel {
     }
 
     public static List<Character> studentsCharacters(Context context){
-        Realm realm = RealmConfig.getInstance();
+        Realm realm = RealmConfig.getInstance(context);
         try{
             return new ArrayList<>(realm.where(Character.class)
                     .equalTo("hogwartsStudent", true)
@@ -48,7 +48,7 @@ public class GetDataViewModel {
     }
 
     public static List<Character> charactersByHouse(HouseENUM houseENUM, Context context){
-        Realm realm = RealmConfig.getInstance();
+        Realm realm = RealmConfig.getInstance(context);
         try {
             return new ArrayList<>(realm.where(Character.class)
                         .equalTo("house", houseENUM.name())

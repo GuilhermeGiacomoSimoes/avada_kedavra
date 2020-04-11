@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         new GetData(this);
 
         //adapter = new CharactersAdapter(this, getAllCharacters());
-       // ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+       //((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
     }
 
     public String getHouseFilter(){

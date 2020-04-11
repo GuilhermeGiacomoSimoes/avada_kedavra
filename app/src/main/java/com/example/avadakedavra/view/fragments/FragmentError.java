@@ -41,7 +41,10 @@ public class FragmentError extends DialogFragment {
 
     public static void build(@NonNull final FragmentManager fragmentManager, @NonNull final String error) {
         FragmentError instance = new FragmentError();
-        instance.setError(error);
-        instance.show(fragmentManager, error);
+        if(!instance.isAdded()){
+            instance.setError(error);
+            instance.setCancelable(false);
+            instance.show(fragmentManager, error);
+        }
     }
 }

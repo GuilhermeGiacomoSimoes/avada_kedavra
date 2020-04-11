@@ -46,10 +46,11 @@ public class GetData {
                     Type listType = new TypeToken<ArrayList<Character>>(){}.getType();
                     String response = new String(responseBody);
                     List<Character> characters = gson.fromJson(response, listType);
+//                    SetDataViewModel.saveCharacters(characters, context);
 
-//                    if(SetDataViewModel.deleteAll(context)){
-//                        SetDataViewModel.saveCharacters(characters);
-//                    }
+                    if(SetDataViewModel.deleteAll(context)){
+                        SetDataViewModel.saveCharacters(characters, context);
+                    }
 
                 }catch (Exception e){
                     FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
