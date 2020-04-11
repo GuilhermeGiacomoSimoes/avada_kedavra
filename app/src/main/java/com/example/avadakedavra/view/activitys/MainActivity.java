@@ -1,6 +1,7 @@
 package com.example.avadakedavra.view.activitys;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -13,13 +14,15 @@ import com.example.avadakedavra.model.http.GetData;
 import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private HouseENUM houseFilter;
     private boolean hogwartsStudentsOnly;
-    private BaseAdapter adapter;
+    //private BaseAdapter adapter;
+    private List<Character> allCharacters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         new GetData(this);
 
-        adapter = new CharactersAdapter(this, getCharacters());
-        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(adapter);
+        //adapter = new CharactersAdapter(this, getAllCharacters());
+        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
     }
 
     public String getHouseFilter(){
@@ -49,8 +52,19 @@ public class MainActivity extends AppCompatActivity {
                 ? getString(R.string.onlyStudents) + getString(R.string.yes)
                 : getString(R.string.onlyStudents) + getString(R.string.no);
     }
+    private List<String> getListCharacterNames(){
+        List<Character> characters = getAllCharacters();
+        List<String> charactersName = new ArrayList<>();
 
-    private List<Character> getCharacters(){
-        return GetDataViewModel.allCharacters(this);
+        for(Character character : characters){
+            charactersName.add(character.getName());
+        }
+
+        return charactersName;
+    }
+
+    private List<Character> getAllCharacters(){
+        allCharacters = GetDataViewModel.allCharacters(this);
+        return allCharacters;
     }
 }

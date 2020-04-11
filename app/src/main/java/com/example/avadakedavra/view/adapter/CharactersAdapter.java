@@ -3,6 +3,7 @@ package com.example.avadakedavra.view.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import com.example.avadakedavra.R;
@@ -39,4 +40,10 @@ public class CharactersAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         return View.inflate(context, R.layout.characters_adapter, null);
     }
+
+    public void openModalDetail(View view){
+
+    }
+
+
 }
