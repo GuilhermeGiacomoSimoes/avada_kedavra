@@ -2,6 +2,7 @@ package com.example.avadakedavra.model.http;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,8 @@ import com.example.avadakedavra.viewmodel.SetDataViewModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.SyncHttpClient;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -25,11 +26,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class GetData {
     private Context context;
-    private static String GET_DATA = "GET";
+    private boolean isRunning = false;
 
     public GetData(@NonNull Context context){
         this.context = context;
-        new GetDataAsyncTask().execute(GET_DATA);
+        if(!isRunning)
+            new GetDataAsyncTask().execute();
     }
 
     public class GetDataAsyncTask extends AsyncTask<String, Void, List<Character>> {
@@ -39,17 +41,15 @@ public class GetData {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
-                    gson =  new GsonBuilder()
-                            .excludeFieldsWithoutExposeAnnotation()
-                            .create();
+                    gson = new Gson();
 
                     Type listType = new TypeToken<ArrayList<Character>>(){}.getType();
                     String response = new String(responseBody);
                     List<Character> characters = gson.fromJson(response, listType);
 
-                    if(SetDataViewModel.deleteAll(context)){
-                        SetDataViewModel.saveCharacters(characters);
-                    }
+//                    if(SetDataViewModel.deleteAll(context)){
+//                        SetDataViewModel.saveCharacters(characters);
+//                    }
 
                 }catch (Exception e){
                     FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
@@ -66,6 +66,7 @@ public class GetData {
 
         @Override
         protected List<Character> doInBackground(String... strings) {
+            isRunning = true;
 
             gson =  new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
@@ -77,12 +78,10 @@ public class GetData {
                     return null;
                 }
 
-                SyncHttpClient httpClient = new SyncHttpClient();
+                AsyncHttpClient httpClient = new AsyncHttpClient();
                 httpClient.setTimeout(15*60*1000);
+                httpClient.get(context, ConnectionHelper.ALLCHARACTERS, null, "application/json", getDataResponseHandler);
 
-                if(strings[0].equals(GET_DATA)){
-                    httpClient.get(context, ConnectionHelper.ALLCHARACTERS, null, "application/json", getDataResponseHandler);
-                }
 
             }catch (Exception e){
                 FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());

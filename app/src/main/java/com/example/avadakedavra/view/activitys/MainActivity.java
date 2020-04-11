@@ -11,7 +11,6 @@ import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.HouseENUM;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.model.http.GetData;
-import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         new GetData(this);
 
         //adapter = new CharactersAdapter(this, getAllCharacters());
-        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+       // ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
     }
 
     public String getHouseFilter(){

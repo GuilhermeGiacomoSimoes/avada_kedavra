@@ -14,7 +14,9 @@ public class ConnectionHelper {
         if(connectivityManager != null)
             networkInfo = connectivityManager.getActiveNetworkInfo();
 
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+        boolean retorno = networkInfo != null && networkInfo.isConnectedOrConnecting();
+
+        return retorno;
     }
 
 }

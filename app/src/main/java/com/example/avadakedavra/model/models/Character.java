@@ -1,9 +1,7 @@
 package com.example.avadakedavra.model.models;
 
 import io.realm.RealmObject;
-import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class Character extends RealmObject {
 
@@ -16,6 +14,10 @@ public class Character extends RealmObject {
     private String patronus;
     private String image;
     private boolean hogwartsStudent;
+
+    public  Character(){
+
+    }
 
     public Character(long characterId,
                      String name,
