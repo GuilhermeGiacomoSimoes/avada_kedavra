@@ -5,11 +5,13 @@ import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.avadakedavra.model.models.Character;
+import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.view.fragments.FragmentError;
 
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class SetDataViewModel {
     public static boolean saveCharacters(List<Character> characters, Context context){
@@ -23,15 +25,8 @@ public class SetDataViewModel {
                     public void execute(Realm realmEx) {
                         Number maxId = realmEx.where(Character.class).max("characterId");
                         long newKey = (maxId == null) ? 1 : maxId.intValue() + 1;
-
-                        Character c = realmEx.createObject(Character.class, newKey);
-                        c.setDateOfBirth(character.getDateOfBirth());
-                        c.setGender(character.getGender());
-                        c.setHogwartsStudent(character.isHogwartsStudent());
-                        c.setHouse(character.getHouse());
-                        c.setImage(character.getImage());
-                        c.setName(character.getName());
-                        c.setPatronus(character.getPatronus());
+                        character.setCharacterId(newKey);
+                        realmEx.copyToRealmOrUpdate(character);
                     }
                 });
 
@@ -52,7 +47,11 @@ public class SetDataViewModel {
         Realm realm = RealmConfig.getInstance(context);
 
         try {
-            realm.deleteAll();
+            RealmResults<Character> results = realm.where(Character.class).findAll();
+            realm.beginTransaction();
+            results.deleteAllFromRealm();
+            realm.commitTransaction();
+
             return true;
 
         }catch (Exception e){

@@ -46,7 +46,6 @@ public class GetData {
                     Type listType = new TypeToken<ArrayList<Character>>(){}.getType();
                     String response = new String(responseBody);
                     List<Character> characters = gson.fromJson(response, listType);
-//                    SetDataViewModel.saveCharacters(characters, context);
 
                     if(SetDataViewModel.deleteAll(context)){
                         SetDataViewModel.saveCharacters(characters, context);
