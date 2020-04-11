@@ -1,6 +1,10 @@
 package com.example.avadakedavra.model.models;
 
-public class Character {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Character extends RealmObject {
+    @PrimaryKey
     private long characterId;
     private String name;
     private String gender;
@@ -8,6 +12,7 @@ public class Character {
     private String dateOfBirth;
     private String patronus;
     private String image;
+    private boolean hogwartsStudent;
 
     public Character(long characterId,
                      String name,
@@ -80,5 +85,13 @@ public class Character {
 
     public void setCharacterId(long characterId) {
         this.characterId = characterId;
+    }
+
+    public boolean isHogwartsStudent() {
+        return hogwartsStudent;
+    }
+
+    public void setHogwartsStudent(boolean hogwartsStudent) {
+        this.hogwartsStudent = hogwartsStudent;
     }
 }

@@ -46,7 +46,7 @@ public class GetData {
                     String response = new String(responseBody);
                     List<Character> characters = gson.fromJson(response, listType);
 
-                    //TODO armazenar os characters no banco
+
                 }catch (Exception e){
                     FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
                     e.printStackTrace();
