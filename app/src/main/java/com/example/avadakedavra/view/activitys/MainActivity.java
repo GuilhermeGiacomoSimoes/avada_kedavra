@@ -1,7 +1,9 @@
 package com.example.avadakedavra.view.activitys;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +12,15 @@ import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.HouseENUM;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.model.http.GetData;
+import com.example.avadakedavra.view.fragments.FragmentFiltro;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
+import com.example.avadakedavra.viewmodel.RealmConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         new GetData(this);
 
-        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+        //((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
 
        realmChangeListener = new RealmChangeListener() {
            @Override
@@ -40,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
                ((ListView) findViewById(R.id.lstCharacters)).deferNotifyDataSetChanged();
            }
        };
+
+        (findViewById(R.id.llFilters)).setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentFiltro.build(getSupportFragmentManager());
+            }
+        });
     }
 
     public String getHouseFilter(){
@@ -60,18 +72,22 @@ public class MainActivity extends AppCompatActivity {
                 : getString(R.string.onlyStudents) + getString(R.string.no);
     }
     private List<String> getListCharacterNames(){
-        List<Character> characters = getAllCharacters();
+        RealmResults<Character> characters = getAllCharacters();
         List<String> charactersName = new ArrayList<>();
 
-        for(Character character : characters){
-            charactersName.add(character.getName());
-        }
+        if(characters != null && characters.size() > 0){
+            for(Character character : characters){
+                charactersName.add(character.getName());
+            }
 
-        return charactersName;
+            return charactersName;
+        }
+        else {
+            return new ArrayList<>();
+        }
     }
 
-    private List<Character> getAllCharacters(){
-        allCharacters = GetDataViewModel.allCharacters(this);
-        return allCharacters;
+    private RealmResults<Character> getAllCharacters(){
+        return GetDataViewModel.allCharacters(this);
     }
 }

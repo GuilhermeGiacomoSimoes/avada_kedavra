@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class GetDataViewModel {
-    public static List<Character> allCharacters(Context context){
+    public static RealmResults<Character> allCharacters(Context context){
         Realm realm = RealmConfig.getInstance(context);
 
         try {
-
-            return new ArrayList<>(realm.where(Character.class).findAll());
+            return realm.where(Character.class).findAll();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -63,4 +63,5 @@ public class GetDataViewModel {
             realm.close();
         }
     }
+
 }
