@@ -1,6 +1,15 @@
 package com.example.avadakedavra.model.models;
 
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.google.gson.annotations.Expose;
+import com.squareup.picasso.Picasso;
+
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 public class Character extends RealmObject {
@@ -99,4 +108,5 @@ public class Character extends RealmObject {
     public void setHogwartsStudent(boolean hogwartsStudent) {
         this.hogwartsStudent = hogwartsStudent;
     }
+
 }
