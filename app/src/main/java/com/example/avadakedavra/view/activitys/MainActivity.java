@@ -2,6 +2,8 @@ package com.example.avadakedavra.view.activitys;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         new GetData(this);
 
-        //((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
 
        realmChangeListener = new RealmChangeListener() {
            @Override
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentFilters.build(getSupportFragmentManager(), MainActivity.this);
             }
         });
-}
+    }
 
     public String getHouseFilter(){
         return getString(R.string.house) + this.houseFilter.name();

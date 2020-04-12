@@ -25,8 +25,6 @@ public class GetDataViewModel {
             e.printStackTrace();
             FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), e.toString());
             return null;
-        }finally {
-            realm.close();
         }
     }
 

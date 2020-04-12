@@ -1,13 +1,11 @@
 package com.example.avadakedavra.view.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -22,10 +20,6 @@ import com.example.avadakedavra.databinding.FragmentFiltersBinding;
 public class FragmentFilters extends DialogFragment {
 
     private Context context;
-
-    public String[] getAllHouses() {
-        return getResources().getStringArray(R.array.house_list);
-    }
 
     @Nullable
     @Override
