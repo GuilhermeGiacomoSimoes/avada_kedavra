@@ -12,27 +12,26 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.avadakedavra.R;
-import com.example.avadakedavra.databinding.FragmentFiltroBinding;
+import com.example.avadakedavra.databinding.FragmentFiltersBinding;
 
-public class FragmentFiltro extends DialogFragment {
-
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentFiltroBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filtro, container, false);
-        return binding.getRoot();
-    }
+public class FragmentFilters extends DialogFragment {
 
     public String[] getAllHouses() {
         return getResources().getStringArray(R.array.house_list);
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        FragmentFiltersBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filters, container, false);
+        return binding.getRoot();
+    }
+
     public static void build(FragmentManager fragmentManager) {
-        FragmentFiltro fragmentFiltro = new FragmentFiltro();
-        if(!fragmentFiltro.isAdded()) {
-            fragmentFiltro.setCancelable(false);
-            fragmentFiltro.show(fragmentManager, "filter");
+        FragmentFilters fragmentFilters =  new FragmentFilters();
+        if(!fragmentFilters.isAdded()){
+            fragmentFilters.setCancelable(false);
+            fragmentFilters.show(fragmentManager, "filters");
         }
     }
 

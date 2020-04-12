@@ -2,8 +2,6 @@ package com.example.avadakedavra.view.activitys;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +10,8 @@ import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.HouseENUM;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.model.http.GetData;
-import com.example.avadakedavra.view.fragments.FragmentFiltro;
+import com.example.avadakedavra.view.fragments.FragmentFilters;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
-import com.example.avadakedavra.viewmodel.RealmConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         (findViewById(R.id.llFilters)).setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentFiltro.build(getSupportFragmentManager());
+                FragmentFilters.build(getSupportFragmentManager());
             }
         });
-    }
+}
 
     public String getHouseFilter(){
         return getString(R.string.house) + this.houseFilter.name();

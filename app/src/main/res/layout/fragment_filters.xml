@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
-            name="fragmentFiltro"
-            type="com.example.avadakedavra.view.fragments.FragmentFiltro" />
+            name="fragmentFilter"
+            type="com.example.avadakedavra.view.fragments.FragmentFilters" />
 
     </data>
 
@@ -35,7 +34,6 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:listitem="@{fragmentFiltro.allHouses}"
             />
 
 
