@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         (findViewById(R.id.llFilters)).setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentFilters.build(getSupportFragmentManager());
+                FragmentFilters.build(getSupportFragmentManager(), MainActivity.this);
             }
         });
 }
