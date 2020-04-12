@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.avadakedavra.model.models.Character;
-import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.view.fragments.FragmentError;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class SetDataViewModel {
 
         try{
             for (final Character character : characters){
-
                 realm.executeTransactionAsync(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realmEx) {
@@ -29,8 +27,8 @@ public class SetDataViewModel {
                         realmEx.copyToRealmOrUpdate(character);
                     }
                 });
-
             }
+
             return true;
 
         }catch (Exception e){
@@ -44,9 +42,8 @@ public class SetDataViewModel {
     }
 
     public static boolean deleteAll(Context context){
-        Realm realm = RealmConfig.getInstance(context);
 
-        try {
+        try (Realm realm = RealmConfig.getInstance(context)) {
             RealmResults<Character> results = realm.where(Character.class).findAll();
             realm.beginTransaction();
             results.deleteAllFromRealm();
@@ -54,13 +51,11 @@ public class SetDataViewModel {
 
             return true;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), e.toString());
             e.printStackTrace();
             return false;
 
-        }finally {
-            realm.close();
         }
     }
 }

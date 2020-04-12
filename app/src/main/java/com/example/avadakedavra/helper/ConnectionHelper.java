@@ -11,12 +11,11 @@ public class ConnectionHelper {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = null;
 
-        if(connectivityManager != null)
+        if(connectivityManager != null){
             networkInfo = connectivityManager.getActiveNetworkInfo();
+        }
 
-        boolean retorno = networkInfo != null && networkInfo.isConnectedOrConnecting();
-
-        return retorno;
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
 }

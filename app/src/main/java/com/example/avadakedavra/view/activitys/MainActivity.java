@@ -2,7 +2,6 @@ package com.example.avadakedavra.view.activitys;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +15,15 @@ import com.example.avadakedavra.viewmodel.GetDataViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmChangeListener;
+
 public class MainActivity extends AppCompatActivity {
 
     private HouseENUM houseFilter;
     private boolean hogwartsStudentsOnly;
     //private BaseAdapter adapter;
     private List<Character> allCharacters;
+    private RealmChangeListener realmChangeListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         new GetData(this);
 
-       ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+        ((ListView) findViewById(R.id.lstCharacters)).setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+
+       realmChangeListener = new RealmChangeListener() {
+           @Override
+           public void onChange(Object o) {
+               ((ListView) findViewById(R.id.lstCharacters)).deferNotifyDataSetChanged();
+           }
+       };
     }
 
     public String getHouseFilter(){

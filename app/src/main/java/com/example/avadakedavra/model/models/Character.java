@@ -6,13 +6,13 @@ import io.realm.annotations.PrimaryKey;
 public class Character extends RealmObject {
 
     @PrimaryKey
-    private long characterId;
-    private String name;
-    private String gender;
-    private String house;
-    private String dateOfBirth;
-    private String patronus;
-    private String image;
+    private long    characterId;
+    private String  name;
+    private String  gender;
+    private String  house;
+    private String  dateOfBirth;
+    private String  patronus;
+    private String  image;
     private boolean hogwartsStudent;
 
     public  Character(){
@@ -37,7 +37,7 @@ public class Character extends RealmObject {
     }
 
     public String getName() {
-        return name;
+        return name == null ? "" : name;
     }
 
     public void setName(String name) {
