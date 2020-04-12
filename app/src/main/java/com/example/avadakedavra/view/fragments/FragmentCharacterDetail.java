@@ -29,14 +29,11 @@ public class FragmentCharacterDetail extends DialogFragment {
     }
 
     public static void buildFragment(@NonNull final Character characterDetail, @NonNull final FragmentManager fragmentManager){
-        new FragmentCharacterDetail() {{
-
-            if(!isAdded()){
-                this.character = characterDetail;
-                show(fragmentManager, "characterDetail");
-            }
-
-        }};
+        FragmentCharacterDetail fragmentCharacterDetail = new FragmentCharacterDetail();
+        if(!fragmentCharacterDetail.isAdded()){
+            fragmentCharacterDetail.character = characterDetail;
+            fragmentCharacterDetail.show(fragmentManager, "characterDetail");
+        }
     }
 
 }
