@@ -21,12 +21,15 @@ import java.util.List;
 
 import io.realm.RealmChangeListener;
 
+import static com.example.avadakedavra.R.id.llFilters;
+
 public class MainActivity extends AppCompatActivity {
 
     private HouseENUM houseFilter;
     private boolean hogwartsStudentsOnly;
     private RealmChangeListener realmChangeListener;
     private List<Character> characters;
+    private ListView lstCharacters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
         configListViewCharacters();
 
+        lstCharacters = findViewById(R.id.lstCharacters);
+
        realmChangeListener = new RealmChangeListener() {
            @Override
            public void onChange(Object o) {
-               ((ListView) findViewById(R.id.lstCharacters)).deferNotifyDataSetChanged();
+               lstCharacters.deferNotifyDataSetChanged();
            }
        };
 
-        (findViewById(R.id.llFilters)).setOnClickListener( new View.OnClickListener() {
+        findViewById(llFilters).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentFilters.build(getSupportFragmentManager(), MainActivity.this);
@@ -91,11 +96,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configListViewCharacters() {
-        ListView listView = findViewById(R.id.lstCharacters);
 
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+        lstCharacters.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lstCharacters.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FragmentCharacterDetail.buildFragment(characters.get(position), getSupportFragmentManager());
