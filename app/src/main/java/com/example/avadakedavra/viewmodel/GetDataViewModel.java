@@ -11,6 +11,7 @@ import com.example.avadakedavra.view.fragments.FragmentError;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -29,36 +30,46 @@ public class GetDataViewModel {
     }
 
     public static List<Character> studentsCharacters(Context context){
-        Realm realm = RealmConfig.getInstance(context);
-        try{
+        try (Realm realm = RealmConfig.getInstance(context)) {
             return new ArrayList<>(realm.where(Character.class)
                     .equalTo("hogwartsStudent", true)
                     .findAll());
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), e.toString());
 
             return null;
-        }finally {
-            realm.close();
         }
     }
 
-    public static List<Character> charactersByHouse(HouseENUM houseENUM, Context context){
-        Realm realm = RealmConfig.getInstance(context);
-        try {
+    public static List<Character> charactersByHouse(String house, Context context){
+        try (Realm realm = RealmConfig.getInstance(context)) {
             return new ArrayList<>(realm.where(Character.class)
-                        .equalTo("house", houseENUM.name())
-                         .findAll());
+                    .equalTo("house", house, Case.INSENSITIVE)
+                    .findAll());
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), e.toString());
 
             return null;
-        }finally {
-            realm.close();
+        }
+    }
+
+    public static List<Character> charactersByHouseAndStudentsOnly(String house, Context context){
+        try (Realm realm = RealmConfig.getInstance(context)) {
+            return new ArrayList<>(realm.where(Character.class)
+                    .equalTo("house", house, Case.INSENSITIVE)
+                    .and()
+                    .equalTo("hogwartsStudent", true)
+                    .findAll());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), e.toString());
+
+            return null;
         }
     }
 

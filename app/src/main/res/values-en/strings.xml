@@ -17,4 +17,5 @@
     <string name="onlyStudents">Only students: </string>
     <string name="all">All</string>
     <string name="error_deleting_data">Error deleting data from database</string>
+    <string name="error_filtering">Error filtering characters</string>
 </resources>

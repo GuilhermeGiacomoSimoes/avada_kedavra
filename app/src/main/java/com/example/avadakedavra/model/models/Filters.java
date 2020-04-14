@@ -9,12 +9,14 @@ import java.io.Serializable;
 
 public class Filters implements Serializable {
 
-    private String houseFilter = "ALL";
-    private boolean hogwartsStudentsOnly = false;
+    private String houseFilter;
+    private boolean hogwartsStudentsOnly;
     private Context context;
 
-    public Filters(Context context) {
+    private Filters(Context context, String houseFilter, boolean hogwartsStudentsOnly){
         this.context = context;
+        this.houseFilter = houseFilter;
+        this.hogwartsStudentsOnly = hogwartsStudentsOnly;
     }
 
     public String getStringOnlyStudents(){
@@ -41,6 +43,10 @@ public class Filters implements Serializable {
 
     public void changeHogwartsStudentsOnly(View view) {
         this.hogwartsStudentsOnly = !this.hogwartsStudentsOnly;
+    }
+
+    public static Filters initializeFilters(Context context){
+        return new Filters(context, "ALL", false);
     }
 
 }

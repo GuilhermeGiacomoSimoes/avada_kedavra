@@ -36,11 +36,12 @@ public class FragmentFilters extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        filters = Filters.initializeFilters(context);
+
         FragmentFiltersBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filters, container, false);
         View view = binding.getRoot();
         binding.setFilters(filters);
 
-        filters = initializeFilters();
         configSpinnerHouses(view);
         configOkayButtonFilters(view);
 
@@ -87,10 +88,6 @@ public class FragmentFilters extends DialogFragment {
                 }
             }
         });
-    }
-
-    private Filters initializeFilters(){
-        return new Filters(context);
     }
 
     private int getHousePosition(){
