@@ -3,7 +3,7 @@ package com.example.avadakedavra.view.activitys;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +12,11 @@ import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.HouseENUM;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.model.http.GetData;
+import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.view.fragments.FragmentCharacterDetail;
 import com.example.avadakedavra.view.fragments.FragmentFilters;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmChangeListener;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HouseENUM houseFilter;
     private boolean hogwartsStudentsOnly;
+
     private RealmChangeListener realmChangeListener;
     private List<Character> characters;
     private ListView lstCharacters;
@@ -38,14 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         new GetData(this);
 
-        configListViewCharacters();
-
         lstCharacters = findViewById(R.id.lstCharacters);
+        configListViewCharacters();
 
        realmChangeListener = new RealmChangeListener() {
            @Override
            public void onChange(Object o) {
-               lstCharacters.deferNotifyDataSetChanged();
+               ((BaseAdapter) lstCharacters.getAdapter()).notifyDataSetChanged();
            }
        };
 
@@ -74,30 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 ? getString(R.string.onlyStudents) + getString(R.string.yes)
                 : getString(R.string.onlyStudents) + getString(R.string.no);
     }
-    private List<String> getListCharacterNames(){
-        getAllCharacters();
-
-        List<String> charactersName = new ArrayList<>();
-
-        if(characters != null && characters.size() > 0){
-            for(Character character : characters){
-                charactersName.add(character.getName());
-            }
-
-            return charactersName;
-        }
-        else {
-            return new ArrayList<>();
-        }
-    }
 
     private void getAllCharacters(){
         this.characters = GetDataViewModel.allCharacters(this);
     }
 
     private void configListViewCharacters() {
+        getAllCharacters();
 
-        lstCharacters.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getListCharacterNames()));
+        lstCharacters.setAdapter(new CharactersAdapter(this, this.characters));
 
         lstCharacters.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

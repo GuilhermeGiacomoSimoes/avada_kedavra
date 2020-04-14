@@ -17,10 +17,4 @@
     <string name="onlyStudents">Only students: </string>
     <string name="all">All</string>
     <string name="error_deleting_data">Error deleting data from database</string>
-    <string-array name="house_list">
-        <item>Gryffondor</item>
-        <item>Hufflepuff</item>
-        <item>Ravenclaw</item>
-        <item>Slytherin</item>
-    </string-array>
 </resources>

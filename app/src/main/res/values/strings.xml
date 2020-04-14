@@ -16,10 +16,4 @@
     <string name="onlyStudents">Somente estudantes: </string>
     <string name="all">Todas</string>
     <string name="error_deleting_data">Erro ao deletar dados do banco de dados</string>
-    <string-array name="house_list">
-        <item>Grifinória</item>
-        <item>Lufa-lufa</item>
-        <item>Corvinal</item>
-        <item>Sonserina</item>
-    </string-array>
 </resources>

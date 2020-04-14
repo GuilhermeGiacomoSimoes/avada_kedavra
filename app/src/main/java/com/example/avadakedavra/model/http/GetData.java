@@ -2,7 +2,6 @@ package com.example.avadakedavra.model.http;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +20,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import cz.msebera.android.httpclient.Header;
 
@@ -91,4 +91,5 @@ public class GetData {
             return null;
         }
     }
+
 }

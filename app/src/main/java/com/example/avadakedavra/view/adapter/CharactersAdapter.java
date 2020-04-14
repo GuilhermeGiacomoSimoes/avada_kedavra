@@ -1,14 +1,16 @@
 package com.example.avadakedavra.view.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
-import com.example.avadakedavra.R;
-import com.example.avadakedavra.model.models.Character;
+import androidx.databinding.DataBindingUtil;
 
+import com.example.avadakedavra.R;
+import com.example.avadakedavra.databinding.CharactersAdapterBinding;
+import com.example.avadakedavra.model.models.Character;
 import java.util.List;
 
 public class CharactersAdapter extends BaseAdapter {
@@ -38,12 +40,12 @@ public class CharactersAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return View.inflate(context, R.layout.characters_adapter, null);
+        CharactersAdapterBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.characters_adapter, parent, false);
+        binding.setCharacter(characters.get(position));
+
+        return binding.getRoot();
     }
 
-    public void openModalDetail(View view){
-
-    }
 
 
 }

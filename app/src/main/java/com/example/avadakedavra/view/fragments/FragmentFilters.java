@@ -2,10 +2,15 @@ package com.example.avadakedavra.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -16,18 +21,32 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.databinding.FragmentFiltersBinding;
+import com.example.avadakedavra.helper.Helper;
+import com.example.avadakedavra.model.models.Filters;
 
 public class FragmentFilters extends DialogFragment {
 
     private Context context;
+    private Filters filters;
+
+    String houses[]  = {
+            "ALL",
+            "GRYFFONDOR",
+            "HUFFLEPUFF",
+            "RAVENCLAW",
+            "SLYTHERIN"
+    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentFiltersBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filters, container, false);
         View view = binding.getRoot();
+        binding.setFilters(filters);
 
-        ((Spinner) view.findViewById(R.id.spinerHouses)).setAdapter(ArrayAdapter.createFromResource(context, R.array.house_list, android.R.layout.simple_spinner_dropdown_item));
+        filters = initializeFilters();
+        configSpinnerHouses(view);
+        configOkayButtonFilters(view);
 
         return view;
     }
@@ -39,6 +58,43 @@ public class FragmentFilters extends DialogFragment {
             fragmentFilters.setCancelable(false);
             fragmentFilters.show(fragmentManager, "filters");
         }
+    }
+
+    private void configSpinnerHouses(View view) {
+        final Spinner spinner = view.findViewById(R.id.spinerHouses);
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this.context, android.R.layout.simple_spinner_item, houses);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setSelection(0);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filters.setHouseFilter(houses[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void configOkayButtonFilters(View view){
+        view.findViewById(R.id.okFilters).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getActivity() != null && getActivity().getIntent() != null){
+                    getActivity().getIntent().putExtra(Helper.FILTERS_KEY, filters);
+                    dismiss();
+                }
+            }
+        });
+    }
+
+    private Filters initializeFilters(){
+        return new Filters();
     }
 
 }

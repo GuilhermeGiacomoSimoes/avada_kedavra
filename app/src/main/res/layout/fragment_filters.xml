@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="fragmentFilter"
-            type="com.example.avadakedavra.view.fragments.FragmentFilters" />
+            name="filters"
+            type="com.example.avadakedavra.model.models.Filters" />
 
     </data>
 
@@ -29,12 +29,22 @@
             android:layout_height="wrap_content"
             android:text="@string/onlyStudents"
             android:layout_marginTop="20dp"
+            android:checked="@{filters.hogwartsStudentsOnly}"
+            android:onClick="@{filters.changeHogwartsStudentsOnly}"
             />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinerHouses"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:textSize="20sp"
+            android:id="@+id/okFilters"
             />
 
 
