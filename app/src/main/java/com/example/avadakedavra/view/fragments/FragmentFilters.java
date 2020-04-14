@@ -2,15 +2,11 @@ package com.example.avadakedavra.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -66,7 +62,7 @@ public class FragmentFilters extends DialogFragment {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this.context, android.R.layout.simple_spinner_item, houses);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
-        spinner.setSelection(0);
+        spinner.setSelection(getHousePosition(), true);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -94,7 +90,22 @@ public class FragmentFilters extends DialogFragment {
     }
 
     private Filters initializeFilters(){
-        return new Filters();
+        return new Filters(context);
+    }
+
+    private int getHousePosition(){
+        int position = 0;
+
+        if(filters.getHouseFilter() != null){
+            for( int i=0; i<houses.length; i++ ){
+                String house = houses[i];
+                if(house.equalsIgnoreCase(filters.getHouseFilter())){
+                    position = i;
+                }
+            }
+        }
+
+        return position;
     }
 
 }

@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="mainActivity"
-            type="com.example.avadakedavra.view.activitys.MainActivity" />
+            name="filters"
+            type="com.example.avadakedavra.model.models.Filters" />
     </data>
 
     <LinearLayout
@@ -35,13 +35,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{mainActivity.houseFilter}"
+                android:text="@{filters.stringOnlyStudents}"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{mainActivity.stringOnlyStudents}"
+                android:text="@{filters.stringHouseFilter}"
                 />
 
 
