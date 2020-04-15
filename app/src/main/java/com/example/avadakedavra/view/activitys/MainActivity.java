@@ -42,9 +42,12 @@ public class MainActivity extends AppCompatActivity implements OnResultDialog {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setFilters(filters);
 
-        new GetData(this);
-
         getAllCharacters();
+
+        if(this.characters == null || this.characters.isEmpty()){
+            new GetData(this);
+        }
+
         configListViewCharacters();
         configLayoutFilterClick();
         configDBChangesToUpdateList();
