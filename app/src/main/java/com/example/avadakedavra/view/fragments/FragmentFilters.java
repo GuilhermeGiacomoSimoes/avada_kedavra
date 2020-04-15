@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.databinding.FragmentFiltersBinding;
-import com.example.avadakedavra.helper.Helper;
 import com.example.avadakedavra.model.interfaces.OnResultDialog;
 import com.example.avadakedavra.model.models.Filters;
 
@@ -29,7 +28,7 @@ public class FragmentFilters extends DialogFragment {
 
     String houses[]  = {
             "ALL",
-            "GRYFFONDOR",
+            "GRYFFINDOR",
             "HUFFLEPUFF",
             "RAVENCLAW",
             "SLYTHERIN"
