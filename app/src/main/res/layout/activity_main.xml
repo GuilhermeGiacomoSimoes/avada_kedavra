@@ -21,29 +21,48 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:orientation="vertical"
-            android:id="@+id/llFilters"
+            android:orientation="horizontal"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/filters"
-                android:textSize="20sp"
-                />
+                android:gravity="center"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:id="@+id/llFilters"
+                android:layout_weight="1"
+                >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{filters.stringOnlyStudents}"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filters"
+                    android:textSize="20sp"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{filters.stringHouseFilter}"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{filters.stringOnlyStudents}"
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{filters.stringHouseFilter}"
+                    />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_reload"
+                android:layout_weight="3"
+                android:id="@+id/btn_reload"
+                />
 
         </LinearLayout>
 
