@@ -1,26 +1,22 @@
 package com.example.avadakedavra.view.activitys;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.databinding.ActivityMainBinding;
-import com.example.avadakedavra.helper.Helper;
+import com.example.avadakedavra.model.interfaces.OnResultDialog;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.model.http.GetData;
 import com.example.avadakedavra.model.models.Filters;
 import com.example.avadakedavra.view.adapter.CharactersAdapter;
 import com.example.avadakedavra.view.fragments.FragmentCharacterDetail;
-import com.example.avadakedavra.view.fragments.FragmentError;
 import com.example.avadakedavra.view.fragments.FragmentFilters;
 import com.example.avadakedavra.viewmodel.GetDataViewModel;
 
@@ -30,7 +26,7 @@ import io.realm.RealmChangeListener;
 
 import static com.example.avadakedavra.R.id.llFilters;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnResultDialog {
 
     private List<Character> characters;
     private ListView lstCharacters;
@@ -72,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(llFilters).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentFilters.build(getSupportFragmentManager(), MainActivity.this);
+                FragmentFilters.build(getSupportFragmentManager(), MainActivity.this, filters);
             }
         });
     }
@@ -86,23 +82,6 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        Bundle extras = data != null
-                ? data.getExtras()
-                : null;
-
-        if (extras != null && extras.get(Helper.FILTERS_KEY) != null) {
-            filters = (Filters) extras.get(Helper.FILTERS_KEY);
-
-            filterCharacters();
-        } else {
-            FragmentError.build(getSupportFragmentManager(), getString(R.string.error_filtering));
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     private void filterCharacters() {
 
         if(filters != null){
@@ -114,9 +93,13 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     //only filter by house
-                    else{
+                    else {
                         this.characters = GetDataViewModel.charactersByHouse(filters.getHouseFilter(),this);
                     }
+                }
+
+                else if (filters.isHogwartsStudentsOnly()) {
+                    this.characters = GetDataViewModel.studentsCharacters(this);
                 }
 
                 //get all characters
@@ -124,9 +107,15 @@ public class MainActivity extends AppCompatActivity {
                     this.characters = GetDataViewModel.allCharacters(this);
                 }
 
-                ((BaseAdapter) lstCharacters.getAdapter()).notifyDataSetChanged();
+                lstCharacters.setAdapter(new CharactersAdapter(this, this.characters));
             }
 
         }
+    }
+
+    @Override
+    public void onDialogRespond(Object result) {
+        filters = (Filters) result;
+        filterCharacters();
     }
 }

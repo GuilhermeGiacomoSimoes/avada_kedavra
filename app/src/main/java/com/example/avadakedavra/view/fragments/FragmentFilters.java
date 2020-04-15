@@ -18,12 +18,14 @@ import androidx.fragment.app.FragmentManager;
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.databinding.FragmentFiltersBinding;
 import com.example.avadakedavra.helper.Helper;
+import com.example.avadakedavra.model.interfaces.OnResultDialog;
 import com.example.avadakedavra.model.models.Filters;
 
 public class FragmentFilters extends DialogFragment {
 
     private Context context;
     private Filters filters;
+    private OnResultDialog mCallBack;
 
     String houses[]  = {
             "ALL",
@@ -36,8 +38,6 @@ public class FragmentFilters extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        filters = Filters.initializeFilters(context);
-
         FragmentFiltersBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filters, container, false);
         View view = binding.getRoot();
         binding.setFilters(filters);
@@ -48,9 +48,10 @@ public class FragmentFilters extends DialogFragment {
         return view;
     }
 
-    public static void build(FragmentManager fragmentManager, Context context) {
+    public static void build(FragmentManager fragmentManager, Context context, Filters filters) {
         FragmentFilters fragmentFilters =  new FragmentFilters();
         if(!fragmentFilters.isAdded()){
+            fragmentFilters.filters = filters;
             fragmentFilters.context = context;
             fragmentFilters.setCancelable(false);
             fragmentFilters.show(fragmentManager, "filters");
@@ -82,10 +83,8 @@ public class FragmentFilters extends DialogFragment {
         view.findViewById(R.id.okFilters).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getActivity() != null && getActivity().getIntent() != null){
-                    getActivity().getIntent().putExtra(Helper.FILTERS_KEY, filters);
-                    dismiss();
-                }
+                mCallBack.onDialogRespond(filters);
+                dismiss();
             }
         });
     }
@@ -105,4 +104,9 @@ public class FragmentFilters extends DialogFragment {
         return position;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mCallBack = (OnResultDialog) context;
+    }
 }
