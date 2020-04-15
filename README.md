@@ -1,8 +1,8 @@
-## AVADA KEDAVRA ## 
+# AVADA KEDAVRA #
 
-# app para teste na working minds. #
+## app para teste na working minds. ##
 
-# app que lista os personagens do filme de Harry Potter e da a possibilidade de filtrar somente estudantes de hogwarts ou filtras pela casa "
+## app que lista os personagens do filme de Harry Potter e da a possibilidade de filtrar somente estudantes de hogwarts ou filtras pela casa ##
 
 	Primeiramente queria pedir desculpas pela pouca experiência com modelos mvvm e databinding, estou em evolução. Segundo queria pedir desculpas pela aparencia pouco atrativa do app, foquei em fazer o app funcionar e me preocupei com a qualidade do código e deixei a remodelagem das views pro futuro, uma vez que eu só tinha uma semana. 
 
