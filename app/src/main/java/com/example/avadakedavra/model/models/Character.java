@@ -1,16 +1,12 @@
 package com.example.avadakedavra.model.models;
 
-import android.view.View;
-
-import com.example.avadakedavra.view.fragments.FragmentCharacterDetail;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Character extends RealmObject {
 
     @PrimaryKey
-    private long    characterId;
+    private Long    characterId;
     private String  name;
     private String  gender;
     private String  house;
@@ -87,11 +83,11 @@ public class Character extends RealmObject {
         this.image = image;
     }
 
-    public long getCharacterId() {
+    public Long getCharacterId() {
         return characterId;
     }
 
-    public void setCharacterId(long characterId) {
+    public void setCharacterId(Long characterId) {
         this.characterId = characterId;
     }
 

@@ -20,7 +20,9 @@ public class GetDataModel {
         Realm realm = RealmConfig.getInstance(context);
 
         try {
-            return realm.where(Character.class).findAll();
+
+            RealmResults<Character> characters = realm.where(Character.class).findAll();
+            return characters;
 
         }catch (Exception e){
             e.printStackTrace();

@@ -22,16 +22,17 @@ public class SetDataModel {
                 realm.executeTransactionAsync(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realmEx) {
-                        Number maxId = realmEx.where(Character.class).max("characterId");
-                        long newKey = (maxId == null) ? 1 : maxId.intValue() + 1;
-                        character.setCharacterId(newKey);
+                        if(character.getCharacterId() == null){
+                            Number maxId = realmEx.where(Character.class).max("characterId");
+                            long newKey = (maxId == null) ? 1 : maxId.intValue() + 1;
+                            character.setCharacterId(newKey);
+                        }
                         realmEx.copyToRealmOrUpdate(character);
                     }
                 });
 
                 OnResultDialog onResultDialog = (OnResultDialog) context;
                 onResultDialog.onDataSetChanged();
-
             }
 
             return true;
