@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.avadakedavra.model.interfaces.OnResultDialog;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.view.fragments.FragmentError;
 
@@ -13,7 +14,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class SetDataViewModel {
-    public static boolean saveCharacters(List<Character> characters, Context context){
+    public static boolean saveCharacters(List<Character> characters, final Context context){
         final Realm realm = RealmConfig.getInstance(context);
 
         try{
@@ -27,6 +28,10 @@ public class SetDataViewModel {
                         realmEx.copyToRealmOrUpdate(character);
                     }
                 });
+
+                OnResultDialog onResultDialog = (OnResultDialog) context;
+                onResultDialog.onDataSetChanged();
+
             }
 
             return true;

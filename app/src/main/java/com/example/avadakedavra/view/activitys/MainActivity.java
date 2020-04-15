@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnResultDialog {
     private List<Character> characters;
     private ListView lstCharacters;
     private Filters filters;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnResultDialog {
 
         filters = Filters.initializeFilters(this);
 
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setFilters(filters);
 
         new GetData(this);
@@ -113,9 +114,21 @@ public class MainActivity extends AppCompatActivity implements OnResultDialog {
         }
     }
 
+    private void updateListAdapter() {
+        getAllCharacters();
+        lstCharacters.setAdapter(new CharactersAdapter(this, this.characters));
+    }
+
     @Override
     public void onDialogRespond(Object result) {
         filters = (Filters) result;
+        binding.setFilters(filters);
+
         filterCharacters();
+    }
+
+    @Override
+    public void onDataSetChanged() {
+        updateListAdapter();
     }
 }
