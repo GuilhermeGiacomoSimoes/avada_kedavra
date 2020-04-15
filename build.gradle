@@ -4,6 +4,10 @@ buildscript {
 
     ext {
         gradle_version = '3.6.2'
+        junit_version = '4.2'
+        okhttp_version = '4.5.0'
+        assertj_version = '3.11.1'
+        android_arch_test = '2.0.0'
     }
 
     repositories {

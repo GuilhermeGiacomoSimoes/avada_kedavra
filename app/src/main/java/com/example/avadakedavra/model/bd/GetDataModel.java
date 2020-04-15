@@ -73,4 +73,18 @@ public class GetDataModel {
         }
     }
 
+    public static Character characterById(long id, Context context){
+        try (Realm realm = RealmConfig.getInstance(context)) {
+            return realm.where(Character.class)
+                    .equalTo("characterId", id)
+                    .findFirst();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), e.toString(), false);
+
+            return null;
+        }
+    }
+
 }

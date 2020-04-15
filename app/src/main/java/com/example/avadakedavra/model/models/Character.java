@@ -23,13 +23,13 @@ public class Character extends RealmObject {
 
     }
 
-    public Character(long characterId,
+    public Character(
+                    long characterId,
                      String name,
                      String gender,
                      String house,
                      String dateOfBirth,
-                     String patronus,
-                     String image)
+                     String patronus)
     {
         this.characterId = characterId;
         this.name = name;
@@ -37,7 +37,6 @@ public class Character extends RealmObject {
         this.house = house;
         this.dateOfBirth = dateOfBirth;
         this.patronus = patronus;
-        this.image = image;
     }
 
     public String getName() {

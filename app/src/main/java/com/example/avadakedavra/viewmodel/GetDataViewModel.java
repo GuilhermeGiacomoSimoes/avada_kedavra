@@ -26,4 +26,8 @@ public class GetDataViewModel {
         return GetDataModel.charactersByHouseAndStudentsOnly(house, context);
     }
 
+    public static Character characterById(long id, Context context) {
+        return GetDataModel.characterById(id, context);
+    }
+
 }
