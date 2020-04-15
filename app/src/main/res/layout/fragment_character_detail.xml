@@ -81,36 +81,40 @@
             android:id="@+id/characterHouse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="@{character.house}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtHouse"
             app:layout_constraintTop_toBottomOf="@+id/imageAndName" />
 
         <TextView
             android:id="@+id/characterGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="@{character.gender}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtGender"
             app:layout_constraintTop_toBottomOf="@+id/characterHouse" />
 
         <TextView
             android:id="@+id/characterDateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="@{character.dateOfBirth}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtDateOfBirth"
             app:layout_constraintTop_toBottomOf="@+id/characterGender" />
 
         <TextView
             android:id="@+id/characterPatronus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="@{character.patronus}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/characterDateOfBirth" />
 
         <Button
@@ -121,6 +125,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             android:layout_marginTop="10dp"
+            android:id="@+id/buttonOKCharacterDetail"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

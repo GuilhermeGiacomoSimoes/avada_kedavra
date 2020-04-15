@@ -1,5 +1,9 @@
 package com.example.avadakedavra.model.models;
 
+import android.view.View;
+
+import com.example.avadakedavra.view.fragments.FragmentCharacterDetail;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
