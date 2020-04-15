@@ -10,6 +10,7 @@ import com.example.avadakedavra.R;
 import com.example.avadakedavra.helper.ConnectionHelper;
 import com.example.avadakedavra.model.models.Character;
 import com.example.avadakedavra.view.fragments.FragmentError;
+import com.example.avadakedavra.viewmodel.GetDataViewModel;
 import com.example.avadakedavra.viewmodel.SetDataViewModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,14 +53,14 @@ public class GetData {
                     }
 
                 }catch (Exception e){
-                    FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
+                    FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString(), false);
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.couldnt_get_data));
+                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.couldnt_get_data), false);
                 error.printStackTrace();
             }
         };
@@ -74,7 +75,17 @@ public class GetData {
 
             try{
                 if(!ConnectionHelper.isConnected(context)){
-                    FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.no_internet_connection));
+                    List<Character> characters = GetDataViewModel.allCharacters(context);
+                    boolean reloadData = true;
+
+                    if(characters != null && !characters.isEmpty()){
+                        reloadData = false;
+                    }
+
+                    FragmentError.build(((AppCompatActivity) context)
+                            .getSupportFragmentManager(),
+                            context.getResources().getString(R.string.no_internet_connection),
+                            reloadData);
                     return null;
                 }
 
@@ -84,7 +95,7 @@ public class GetData {
 
 
             }catch (Exception e){
-                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString());
+                FragmentError.build(((AppCompatActivity) context).getSupportFragmentManager(), context.getResources().getString(R.string.error) + e.toString(), false);
                 e.printStackTrace();
             }
 

@@ -13,10 +13,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.avadakedavra.R;
 import com.example.avadakedavra.databinding.FragmentErrorBinding;
+import com.example.avadakedavra.model.http.GetData;
 
 public class FragmentError extends DialogFragment {
 
     private String error;
+    private boolean reloadData;
 
     @Nullable
     @Override
@@ -36,12 +38,17 @@ public class FragmentError extends DialogFragment {
     }
 
     public void dismiss(View view){
+        if(reloadData){
+            new GetData(getContext());
+        }
+
         super.dismiss();
     }
 
-    public static void build(@NonNull final FragmentManager fragmentManager, @NonNull final String error) {
+    public static void build(@NonNull final FragmentManager fragmentManager, @NonNull final String error, boolean reloadData) {
         FragmentError instance = new FragmentError();
         if(!instance.isAdded()){
+            instance.reloadData = reloadData;
             instance.setError(error);
             instance.setCancelable(false);
             instance.show(fragmentManager, error);

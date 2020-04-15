@@ -1,4 +1,4 @@
-package com.example.avadakedavra.viewmodel;
+package com.example.avadakedavra.model.bd;
 
 import android.content.Context;
 

@@ -3,6 +3,8 @@ package com.example.avadakedavra.model.models;
 import android.content.Context;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.avadakedavra.R;
 
 import java.io.Serializable;
@@ -47,6 +49,10 @@ public class Filters implements Serializable {
 
     public static Filters initializeFilters(Context context){
         return new Filters(context, "ALL", false);
+    }
+
+    public void reestart(View view) {
+        ((AppCompatActivity) context).recreate();
     }
 
 }
